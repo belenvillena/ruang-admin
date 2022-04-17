@@ -1264,7 +1264,7 @@ a:focus {
 .card .card-header[data-toggle=collapse] {
   text-decoration: none;
   position: relative;
-  padding: .75rem 3.25rem .75rem 1.25rem
+  padding:.75rem 3.25rem .75rem 1.25rem
 }
 
 .card .card-header[data-toggle=collapse]::after {
