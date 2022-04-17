@@ -1,5 +1,5 @@
 <?php 
-//session_start();
+//session_start(); --> no se inicia sesion start porqe viene por defecto desde el login
 //valido si tengo una sesion abierta y si no la tengo vuelvo al login
 if (empty($_SESSION['Usuario_Nombre']) ) {
     header('Location: logout1.php');
