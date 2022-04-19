@@ -1,5 +1,5 @@
 <?php
-// conexion a base de datos
+// conexion a base de datos con mi archivo
 include 'config/database.php';
  
 // Tomo parámetros

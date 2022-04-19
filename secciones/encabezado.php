@@ -30,7 +30,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="indexadm.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span> <?php  echo$_SESSION['Usuario_Nombre'].' '.$_SESSION['Usuario_Apellido'].'<br>'.$_SESSION['Usuario_Puesto']; ?></span></a>
+          <span> <?php  echo$_SESSION['Usuario_Puesto']; ?></span></a>
       </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
