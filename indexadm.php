@@ -1,5 +1,6 @@
 <?php 
-//session_start(); --> no se inicia sesion start porqe viene por defecto desde el login
+//session_start(); 
+//--> no se inicia sesion start porqe viene por defecto desde el login
 //valido si tengo una sesion abierta y si no la tengo vuelvo al login
 if (empty($_SESSION['Usuario_Nombre']) ) {
     header('Location: logout1.php');
@@ -14,7 +15,7 @@ require_once 'secciones/encabezado.php';
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"> Bienvenid@ <?php  echo$_SESSION['Usuario_Nombre'] ; ?> </h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="indexadm.php">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="indexadm1.php">Inicio</a></li>
               <li class="breadcrumb-item active" aria-current="page">Mi resumen</li>
             </ol>
           </div>
