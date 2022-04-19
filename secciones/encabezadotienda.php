@@ -1,10 +1,10 @@
 <?php 
-session_start();
+//session_start();
 //valido si tengo una sesion abierta y si no la tengo vuelvo al login
 if (empty($_SESSION['Usuario_Nombre']) ) {
     header('Location: logout1.php');
     exit;
-} ]?>
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +34,7 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="productos (2).php">
+        <a class="nav-link" href="productos (2v).php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span><?php  echo$_SESSION['Usuario_Nombre'].' '.$_SESSION['Usuario_Apellido']; ?></span></a>
       </li>

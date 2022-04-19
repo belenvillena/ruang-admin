@@ -20,7 +20,7 @@
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="indexadm.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="indexadm1.php">
         <div class="sidebar-brand-icon">
           <img src="img/logo/logo2.jpg">
         </div>
@@ -28,7 +28,7 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="indexadm.php">
+        <a class="nav-link" href="indexadm1.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span> <?php  echo$_SESSION['Usuario_Puesto']; ?></span></a>
       </li>
@@ -80,7 +80,7 @@
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestión Tienda</h6>
-            <a class="collapse-item" href="productos (2).php">Acceso Tienda</a>
+            <a class="collapse-item" href="productos (2v).php">Acceso Tienda</a>
            <!-- <a class="collapse-item" href="form_advanceds.html">Asignar pedidos</a>
             <a class="collapse-item" href="progress-bar.html">Cancelar Viaje</a>-->
           </div>
