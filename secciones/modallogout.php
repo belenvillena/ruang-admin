@@ -10,7 +10,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p>Está seguro que desea cerrar sesión?</p>
+                  <p><?php  echo$_SESSION['Usuario_Nombre'] ; ?>, está segur@ que desea cerrar sesión?</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
