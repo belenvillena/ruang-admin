@@ -1,0 +1,28 @@
+<?php
+session_start ();
+// conexion base de datos
+include 'config/database.php';
+ 
+
+ $vaciar="DELETE FROM cart_items where user_id = '$user_id'";
+ $vaciar_carrito = $con->prepare($vaciar);
+
+	
+	if($vaciar_carrito->execute())
+	{
+		header('Location: carro.php?action=vaciar');
+	}
+	
+
+
+    // Redirige e indica que se generó ok el pedido
+    
+
+ 
+// si la eliminación falla
+else{
+    // Redirige e indica el error
+    header('Location: carro.php?action=failed&id=' . $id . '&name=' . $name);
+}
+?>
+
