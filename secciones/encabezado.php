@@ -222,7 +222,7 @@
                     <div class="status-indicator bg-default"></div>
                   </div>
                   <div>
-                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people
+                    <div class="text-truncate">The reason I ask is because someone told me that people
                       say this to all dogs, even if they aren't good...</div>
                     <div class="small text-gray-500">Jaenab · 2w</div>
                   </div>
