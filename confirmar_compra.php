@@ -19,7 +19,6 @@ $stmt = $con->prepare($query);
 $stmt->bindParam(1, $created);
 $stmt->bindParam(2, $total_pedido);
 $stmt->bindParam(3, $user_id);
- 
 
 
 if($stmt->execute()){
@@ -41,11 +40,6 @@ if($stmt->execute()){
 	{
 		header('Location: carro.php?action=confirm');
 	}
-	
-
-
-    // Redirige e indica que se generó ok el pedido
-    
 }
  
 // si la eliminación falla

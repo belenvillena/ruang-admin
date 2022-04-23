@@ -178,10 +178,7 @@ if($num>0){
 
     
      require_once 'secciones/footer.php';
-      
-  
 
-  
 ?>
 
   <!-- jQuery library -->
