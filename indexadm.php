@@ -13,7 +13,7 @@ require_once 'secciones/encabezado.php';
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"> Bienvenid@ <?php  echo$_SESSION['Usuario_Nombre'] ; ?><?php  echo$_SESSION['Usuario_idPerona']; ?>  </h1>
+            <h1 class="h3 mb-0 text-gray-800"> Bienvenid@ <?php  echo$_SESSION['Usuario_Nombre'] ; ?>  </h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="indexadm1.php">Inicio</a></li>
               <li class="breadcrumb-item active" aria-current="page">Mi resumen</li>
