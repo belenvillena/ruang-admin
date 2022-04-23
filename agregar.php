@@ -1,4 +1,5 @@
 <?php
+session_start();
 // conexion base de datos
 include 'config/database.php';
  
@@ -6,7 +7,7 @@ include 'config/database.php';
 $id = isset($_GET['id']) ?  $_GET['id'] : die;
 $name = isset($_GET['name']) ?  $_GET['name'] : die;
 $quantity  = isset($_GET['quantity']) ?  $_GET['quantity'] : die;
-$user_id=1;
+$user_id=$_SESSION['Usuario_idPersona'];
 $created=date('Y-m-d H:i:s');
  
 // instrucción de inserción de items en carrito
@@ -23,11 +24,11 @@ $stmt->bindParam(4, $created);
  
 // Si la inserción es correcta
 if($stmt->execute()){
-    header('Location: productos (2).php?action=added&id=' . $id . '&name=' . $name);
+    header('Location: productos (2v).php?action=added&id=' . $id . '&name=' . $name);
 }
  
 // Si la inserción es incorrecta
 else{
-     header('Location: productos (2).php?action=failed&id=' . $id . '&name=' . $name);
+     header('Location: productos (2v).php?action=failed&id=' . $id . '&name=' . $name);
 }
  

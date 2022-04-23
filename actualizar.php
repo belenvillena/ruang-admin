@@ -1,4 +1,5 @@
 <?php
+session_start();
 // conexion a base de datos con mi archivo
 include 'config/database.php';
  
@@ -7,7 +8,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : "";
 $name = isset($_GET['name']) ? $_GET['name'] : "";
 $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : "";
 $quantity=intval($quantity);
-$user_id=1;
+$user_id=$_SESSION['Usuario_idPersona'];
  
 // elimino los productos que deseo sacar del carrito
 $query = "UPDATE cart_items SET quantity=? WHERE product_id=? AND user_id=?";

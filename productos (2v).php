@@ -25,6 +25,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : "";
 $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : "1";
 $name = isset($_GET['descripcionProd']) ? $_GET['descripcionProd'] : "";
 $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : "1";
+$user_id= $_SESSION['Usuario_idPersona'];
  
 // Mensaje de agregado o de error al agregar
 if($action=='added'){
@@ -59,7 +60,7 @@ if($num>0){
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Selección de productos</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="productos (2).php">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="productos (2v).php">Inicio</a></li>
               <li class="breadcrumb-item">Acceso tienda</li>
               <li class="breadcrumb-item active" aria-current="page">Productos</li>
             </ol>

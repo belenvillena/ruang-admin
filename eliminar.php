@@ -1,11 +1,12 @@
 <?php
+session_start ();
 // conexion base de datos
 include 'config/database.php';
  
 // parámetros
 $id = isset($_GET['id']) ? $_GET['id'] : "";
 $name = isset($_GET['name']) ? $_GET['name'] : "";
-$user_id=1;
+$user_id=$_SESSION['Usuario_idPersona'];
  
 // instrucción de eliminación
 $query = "DELETE FROM cart_items WHERE product_id=? AND user_id=?";

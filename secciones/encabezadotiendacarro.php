@@ -26,7 +26,7 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="productos (2v).php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="productos (2).php">
         <div class="sidebar-brand-icon">
           <img src="img/logo/logo2.jpg">
         </div>

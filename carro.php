@@ -1,8 +1,16 @@
 
 <?php
+
+session_start();
+//valido si tengo una sesion abierta y si no la tengo vuelvo al login
+if (empty($_SESSION['Usuario_Nombre']) ) {
+   header('Location: logout1.php');
+    exit;
+}
+
 // conexion a la base de datos
 include 'config/database.php';
-require_once 'secciones/encabezadotienda.php';
+require_once 'secciones/encabezadotiendacarro.php';
 
 // Header
 //$page_title="Carrito";
@@ -50,7 +58,7 @@ else if($action=='invalid_value'){
 }
  
 // Seleccionamos de la tabla items los productos
-$query="SELECT p.idProducto, p.descripcionProd, p.precioProd, ci.quantity, ci.quantity * p.precioProd AS subtotal  
+$query="SELECT p.idProducto, p.descripcionProd, p.precioProd, ci.quantity, ci.user_id, ci.quantity * p.precioProd AS subtotal  
             FROM cart_items ci  
                 LEFT JOIN producto p 
                     ON ci.product_id = p.idProducto"; 
@@ -117,9 +125,24 @@ if($num>0){
     echo "<td>&#36;" . number_format($total, 2, '.', ',') . "</td>";
     echo "<td>";
             echo "<a href='#' class='btn btn-success'>";
-            echo "<span class='glyphicon glyphicon-shopping-cart'></span> Pagar";
+          
+            echo "<span class='glyphicon glyphicon-shopping-cart'></span> Confirmar pedido";
             echo "</a>";
     echo "</td>";
+    
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td><b></b></td>";
+    echo "<td></td>";
+    echo "<td></td>";
+    echo "<td></td>";
+    echo "<td>";
+            echo "<a href='#' class='btn btn-danger'>";
+          
+            echo "<span class='glyphicon glyphicon-shopping-cart'></span> Vaciar carrito";
+            echo "</a>";
+    echo "</td>";
+    
     echo "</tr>";
          
     echo "</table> </div>

@@ -80,7 +80,7 @@
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestión Tienda</h6>
-            <a class="collapse-item" href="productos (2v).php">Acceso Tienda</a>
+            <a class="collapse-item" href="productos (2).php">Acceso Tienda</a>
            <!-- <a class="collapse-item" href="form_advanceds.html">Asignar pedidos</a>
             <a class="collapse-item" href="progress-bar.html">Cancelar Viaje</a>-->
           </div>

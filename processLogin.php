@@ -17,6 +17,7 @@ function DatosLogin($Vusuario, $Vpass, $vConexion){
         $Usuario['APELLIDO'] = $data['apellidoPersona'];
         $Usuario['PUESTO'] = $data['puestoMercado'];
         $Usuario['NIVEL'] = $data['nombreDato'];
+        $Usuario['ID'] = $data['idPersona'];
 
     }
 

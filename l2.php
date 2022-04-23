@@ -22,6 +22,7 @@ if (!empty($_POST['BotonLogin'])){
         $_SESSION['Usuario_Apellido']   =   $UsuarioLogueado['APELLIDO'];
         $_SESSION['Usuario_Puesto']      =   $UsuarioLogueado['PUESTO'];
         $_SESSION['Usuario_nombreDato']      =   $UsuarioLogueado['NIVEL'];
+        $_SESSION['Usuario_idPersona']      =   $UsuarioLogueado['ID'];
 
 
  if($UsuarioLogueado['NIVEL'] == 'Administrador'){
