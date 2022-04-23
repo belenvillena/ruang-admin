@@ -19,6 +19,7 @@ require_once 'secciones/encabezadotiendacarro.php';
 // Parametros necesarios
 $action = isset($_GET['action']) ? $_GET['action'] : "";
 $name = isset($_GET['name']) ? $_GET['name'] : "";
+$total_pedido= isset($_GET['total_pedido']) ? $_GET['total_pedido'] : "";
  
  //Encabezado
 echo ' <div class="container-fluid" id="container-wrapper">
@@ -56,6 +57,11 @@ else if($action=='invalid_value'){
         echo "<strong>{$name}</strong> cantidad es inválida!";
     echo "</div>";
 }
+else if($action=='confirm'){
+        echo "<div class='alert alert-info'>";
+        echo "<strong>Gracias, </strong> se generó su pedido y se encuentra pendiente de confirmación!";
+    echo "</div>";
+}
  
 // Seleccionamos de la tabla items los productos
 $query="SELECT p.idProducto, p.descripcionProd, p.precioProd, ci.quantity, ci.user_id, ci.quantity * p.precioProd AS subtotal  
@@ -80,7 +86,7 @@ if($num>0){
     // Títulos de la tabla
     echo '<thead class="thead-light"><tr>';
         echo "<th class='textAlignLeft'>Nombre del producto</th>";
-        echo "<th>Precio (USD)</th>";
+        echo "<th>Precio ($)</th>";
             echo "<th style='width:15em;'>Cantidad</th>";
             echo "<th>Sub Total</th>";
             echo "<th>Acciones</th>";
@@ -108,23 +114,27 @@ if($num>0){
                         echo "</div>";
                 echo "</td>";
                 echo "<td>&#36;" . number_format($subtotal, 2, '.', ',') . "</td>";
+
                 echo "<td>";
             echo "<a href='eliminar.php?id={$idProducto}&name={$name}' class='btn btn-danger'>";
                         echo "<span class='glyphicon glyphicon-remove'></span> Quitar del carrito";
             echo "</a>";
+
             echo "</td>";
         echo "</tr>";
+
              
         $total += $subtotal;
     }
      
     echo "<tr>";
-    echo "<td><b>Total</b></td>";
+    echo "<form method='GET' >";
+    echo "<td><b>Total Pedido</b></td>";
     echo "<td></td>";
     echo "<td></td>";
-    echo "<td>&#36;" . number_format($total, 2, '.', ',') . "</td>";
+    echo "<td name='total_pedido'>&#36;" . number_format($total, 2, '.', ',') . "</td>";
     echo "<td>";
-            echo "<a href='#' class='btn btn-success'>";
+            echo "<a href='confirmar_compra.php?total_pedido={$total}'' class='btn btn-success'>";
           
             echo "<span class='glyphicon glyphicon-shopping-cart'></span> Confirmar pedido";
             echo "</a>";
