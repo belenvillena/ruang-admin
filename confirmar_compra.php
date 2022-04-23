@@ -35,12 +35,17 @@ if($stmt->execute()){
 	{
 		$del="DELETE FROM cart_items where user_id = '$user_id'";
 		$borrar = $con->prepare($del);
+
+	}
+	if($borrar->execute())
+	{
+		header('Location: carro.php?action=confirm');
 	}
 	
 
 
     // Redirige e indica que se generó ok el pedido
-    header('Location: carro.php?action=confirm');
+    
 }
  
 // si la eliminación falla
@@ -49,3 +54,4 @@ else{
     header('Location: carro.php?action=failed&id=' . $id . '&name=' . $name);
 }
 ?>
+
