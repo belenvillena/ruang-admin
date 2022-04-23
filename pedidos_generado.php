@@ -7,7 +7,7 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
     exit;
 }
 ?>
-// conexion a la base de datos
+
 
 <script
   src="https://code.jquery.com/jquery-3.6.0.js"
