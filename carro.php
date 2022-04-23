@@ -62,6 +62,11 @@ else if($action=='confirm'){
         echo "<strong>Gracias, </strong> se generó su pedido y se encuentra pendiente de confirmación!";
     echo "</div>";
 }
+else if($action=='vaciar'){
+    echo "<div class='alert alert-info'>";
+        echo "Se eliminaron los productos del carrito!";
+    echo "</div>";
+}
  
 // Seleccionamos de la tabla items los productos
 $query="SELECT p.idProducto, p.descripcionProd, p.precioProd, ci.quantity, ci.user_id, ci.quantity * p.precioProd AS subtotal  
@@ -147,7 +152,7 @@ if($num>0){
     echo "<td></td>";
     echo "<td></td>";
     echo "<td>";
-            echo "<a href='#' class='btn btn-danger'>";
+            echo "<a href='vaciar_carrito.php?total_pedido={$total}'' class='btn btn-danger'>";
           
             echo "<span class='glyphicon glyphicon-shopping-cart'></span> Vaciar carrito";
             echo "</a>";
