@@ -30,6 +30,8 @@ if($stmt->execute()){
 
 	$insert = $con->prepare($cargar);
 
+	
+
 	if($insert->execute())
 	{
 		$del="DELETE FROM cart_items where user_id = '$user_id'";
@@ -48,4 +50,3 @@ else{
     header('Location: carro.php?action=failed&id=' . $id . '&name=' . $name);
 }
 ?>
-
