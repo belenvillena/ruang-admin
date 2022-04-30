@@ -9,14 +9,15 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
 ?>
 
 
-<script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+
 <?php include 'config/database.php';
 require_once 'secciones/encabezadotiendacarro.php';
 ?>
 
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
 
 
         <!-- Topbar -->
@@ -47,6 +48,7 @@ require_once 'secciones/encabezadotiendacarro.php';
                         <th>Fecha pedido</th>
                         <th>Monto total</th>
                         <th>Estado de Pedido</th>
+                        <th>Acciones</th>
                         
                       </tr>
                     </thead>
@@ -56,6 +58,7 @@ require_once 'secciones/encabezadotiendacarro.php';
                         <th>Fecha pedido</th>
                         <th>Monto total</th>
                         <th>Estado de Pedido</th>
+                        <th>Acciones</th>
                         
                       </tr>
                     </tfoot>
@@ -65,15 +68,16 @@ require_once 'secciones/encabezadotiendacarro.php';
 require_once "conexionbd.php";
 
 foreach ($connection  ->query("Select a.id, a.fecha, a.total, b.nombreEstado from pedidos a, estadopedido b
-where a.id= b.idPedido
+where a.idEstado= b.idEstado
 and a.user_id = '52'
-and b.nombreEstado = 'Generado'") as $row)
+and a.idEstado = '1'") as $row)
   { ?> 
 <tr>
   <td><?php echo $row['id']; ?></td>
     <td><?php echo $row['fecha']; ?></td>
     <td><?php echo $row['total'] ; ?></td>
      <td><?php echo $row['nombreEstado']; ?></td>
+     <th>Acciones</th>
       
  </tr>
 <?php

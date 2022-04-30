@@ -13,7 +13,7 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
 
 // conexion a la base de datos
 include 'config/database.php';
-require_once 'secciones/encabezadotienda.php';
+require_once 'secciones/encabezadotienda1.php';
 
 // Head de la página
 //$page_title="Lista de productos";

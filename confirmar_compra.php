@@ -10,7 +10,7 @@ $user_id=$_SESSION['Usuario_idPersona'];
 $created=date('Y-m-d H:i:s');
  
 // instrucción de eliminación
-$query = "INSERT INTO pedidos(fecha, total, user_id) VALUES (?, ?, ?)";
+$query = "INSERT INTO pedidos(fecha, total, user_id, idEstado) VALUES (?, ?, ?, '1')";
  
 
 $stmt = $con->prepare($query);
