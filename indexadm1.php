@@ -116,8 +116,20 @@ require_once 'secciones/encabezado.php';
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pedidos Pendientes</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Consulta</div>
+                       <div class="text-xs font-weight-bold text-uppercase mb-1">Pedidos Pendientes</div>
+                      <?php 
+                      require_once "conexionbd.php";
+                       $sql = "SELECT COUNT( DISTINCT id ) AS total FROM pedidos ";
+         $resultado = mysqli_query($connection, $sql);
+       
+       
+        $filas = mysqli_fetch_assoc($resultado);
+
+
+        //if (mysqli_num_rows($contarproductos)>0) // pregunto si encontró el registro en la tabla
+        ?>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                       <?php echo  $filas['total'];?></div>
                       <div class="mt-2 mb-0 text-muted text-xs">
                         <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
                         <span>Totales</span>
