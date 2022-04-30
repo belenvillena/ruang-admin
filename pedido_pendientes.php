@@ -50,6 +50,7 @@ require_once 'secciones/encabezado.php';
                         <th>Monto total</th>
                         <th>Cantidad Bultos</th>
                         <th>Estado</th>
+                        <th>Acciones</th>
                         
                       </tr>
                     </thead>
@@ -61,6 +62,7 @@ require_once 'secciones/encabezado.php';
                         <th>Monto total</th>
                         <th>Cantidad Bultos</th>
                         <th>Estado</th>
+                         <th>Acciones</th>
                         
                       </tr>
                     </tfoot>
@@ -83,6 +85,15 @@ GROUP BY a.id") as $row)
     <td><?php echo $row['total'] ; ?></td>
     <td><?php echo $row['cant'] ; ?></td>
      <td><?php echo $row['nombreEstado']; ?></td>
+     <td><a href="#" class="btn btn-success btn-sm">
+                    <i class="fas fa-check"></i>
+                  </a>
+                  <a href="#" class="btn btn-info btn-sm">
+                    <i class="fas fa-info-circle"></i>
+                  </a>
+                   <a href="#" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash"></i>
+                  </a> </td>
    
       
  </tr>
