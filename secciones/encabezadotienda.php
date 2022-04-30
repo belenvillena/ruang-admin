@@ -26,7 +26,7 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="productos (2v).php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="productos (2).php">
         <div class="sidebar-brand-icon">
           <img src="img/logo/logo2.jpg">
         </div>
@@ -59,39 +59,39 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
       
 
 <!-- Sección sólo maquetada -->
-       <!--
+      
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Ordenes
       </div>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"
-          aria-controls="collapsePage">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"aria-controls="collapsePage">
           <i class="fas fa-fw fa-columns"></i>
           <span>Pedidos</span>
         </a>
         <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestión Pedidos</h6>
-            <a class="collapse-item" href="login.html">Pedidos Generados</a>
+            <a class="collapse-item" href="pedidos_generado.php">Pedidos Generados</a>
             <a class="collapse-item" href="register.html">Pedidos Confirmados</a>
             <a class="collapse-item" href="404.html">Cancelar Pedido</a>
            
           </div>
         </div>
-      </li>
-      <li class="nav-item">
+      </li></ul>
+      <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+       <!-- <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Reportes</span>
         </a>
-      </li>-->
+      </li>
       <hr class="sidebar-divider">
       
-    </ul> 
+    </ul> -->
     <!-- Sidebar -->
-    <div id="content-wrapper" class="d-flex flex-column">
-      <div id="content">
+    
         <!-- TopBar -->
         <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
           <!-- Sidebar
@@ -281,3 +281,14 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
           </ul>
         </nav>
         <!-- Topbar -->
+          <!-- Scroll to top -->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/ruang-admin.min.js"></script>
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="js/demo/chart-area-demo.js"></script>  
