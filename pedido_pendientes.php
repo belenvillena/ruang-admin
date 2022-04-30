@@ -42,13 +42,13 @@ require_once 'secciones/encabezado.php';
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush" id="dataTable">
-                    <thead class="thead-light">
+                    <thead class="thead-light" >
                       <tr>
                         <th>N° pedido</th>
                         <th>Cliente</th>
                         <th>Fecha pedido</th>
                         <th>Monto total</th>
-                        <th>Cantidad Bultos</th>
+                        <th >Cantidad Bultos</th>
                         <th>Estado</th>
                         <th>Acciones</th>
                         
@@ -83,8 +83,8 @@ GROUP BY a.id") as $row)
   <td><?php echo $row['puestoMercado']; ?></td>
     <td><?php echo $row['fecha']; ?></td>
     <td><?php echo $row['total'] ; ?></td>
-    <td><?php echo $row['cant'] ; ?></td>
-     <td><?php echo $row['nombreEstado']; ?></td>
+    <td ><?php echo $row['cant'] ; ?></td>
+     <td><span class="badge badge-danger"><?php echo $row['nombreEstado']; ?></td>
      <td><a href="#" class="btn btn-success btn-sm">
                     <i class="fas fa-check"></i>
                   </a>
