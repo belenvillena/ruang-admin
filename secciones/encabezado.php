@@ -87,6 +87,23 @@
         </div>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
+          aria-controls="collapseTable">
+          <i class="fas fa-fw fa-table"></i>
+         <span>Pedidos</span>
+        </a>
+        
+        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Gestión Pedidos</h6>
+            <a class="collapse-item" href="pedido_pendientes.php">Pedidos Confirmados</a>
+           <!-- <a class="collapse-item" href="form_advanceds.html">Asignar pedidos</a>
+            <a class="collapse-item" href="progress-bar.html">Cancelar Viaje</a>-->
+          </div>
+        </div>
+      </li>
+
 <!-- Sección sólo maquetada -->
        <!--
       <hr class="sidebar-divider">
