@@ -82,14 +82,43 @@ GROUP BY a.id") as $row)
   <td><?php echo $row['id']; ?></td>
   <td><?php echo $row['puestoMercado']; ?></td>
     <td><?php echo $row['fecha']; ?></td>
-    <td><?php echo $row['total'] ; ?></td>
+    <td>$ <?php echo $row['total'] ; ?></td>
     <td ><?php echo $row['cant'] ; ?></td>
      <td><span class="badge badge-danger"><?php echo $row['nombreEstado']; ?></td>
      <td><a href="#" class="btn btn-success btn-sm">
-                    <i class="fas fa-check"></i>
+                   <i class="fas fa-check"></i>
                   </a>
-                  <a href="#" class="btn btn-info btn-sm">
-                    <i class="fas fa-info-circle"></i>
+                  <button href="#" id="GenerarMysql"  class="btn btn-info btn-sm">
+                    <?php
+include "conexionbd.php";
+ $connection = new mysqli($servidor, $nombreusuario, $password, $db);
+$query=$connection->query("select * from detalle_pedido");
+$detalles = array();
+$n=0;
+while($r=$query->fetch_object()){ $detalles[]=$r; $n++;}
+?>
+                    <i class="fas fa-info-circle"></i></button>
+                    
+                    <script>
+$("#GenerarMysql").click(function(){
+  var pdf = new jsPDF();
+  pdf.text(20,20,"Mostrando una Tabla con PHP y MySQL");
+
+  var columns = ["Id", "Id producto", "Id Pedido", "Cantidad"];
+  var data = [
+<?php foreach($clientes as $c):?>
+ [<?php echo $n; ?>, "<?php echo $c->id; ?>", "<?php echo $c->idProd; ?>", "<?php echo $c->idPedido; ?>", "<?php echo $c->cantidad; ?>"],
+<?php endforeach; ?>  
+  ];
+
+  pdf.autoTable(columns,data,
+    { margin:{ top: 25  }}
+  );
+
+  pdf.save('MiTabla.pdf');
+
+});
+</script>
                   </a>
                    <a href="#" class="btn btn-danger btn-sm">
                     <i class="fas fa-trash"></i>
@@ -116,9 +145,10 @@ GROUP BY a.id") as $row)
             </div>
           </div>
 
+
           <?php require_once 'secciones/modallogout.php'; ?>
         <!---Container Fluid-->
-      </div>
+      
 
       <!-- Footer -->
       <?php require_once 'secciones/footer.php'; ?>
