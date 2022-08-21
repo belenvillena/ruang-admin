@@ -43,7 +43,7 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
         Tienda
       </div>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="productos (2v).php" data-toggle="collapse" data-target="#collapseBootstrap"
+        <a class="nav-link collapsed" href="productos (2).php" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
           <span>Productos</span>
