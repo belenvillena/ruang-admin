@@ -1,17 +1,15 @@
 <?php
 
 session_start();
-//valido si tengo una sesion abierta y si no la tengo vuelvo al login
+//valido si tengo una sesion abierta y si no la tengo vuelvo al login inicial
 if (empty($_SESSION['Usuario_Nombre']) ) {
    header('Location: logout1.php');
     exit;
-}
+} 
 ?>
 
-
-
 <?php include 'config/database.php';
-require_once 'secciones/encabezadotiendacarro.php';
+require_once 'secciones/encabezadotienda.php';
 ?>
 
 <script
@@ -45,7 +43,7 @@ require_once 'secciones/encabezadotiendacarro.php';
                     <thead class="thead-light">
                       <tr>
                         <th>N° pedido</th>
-                        <th>Fecha pedido</th>
+                        <th>Fecha/Hora pedido</th>
                         <th>Monto total</th>
                         <th>Estado de Pedido</th>
                         <th>Acciones</th>
@@ -55,7 +53,7 @@ require_once 'secciones/encabezadotiendacarro.php';
                     <tfoot>
                       <tr>
                         <th>N° pedido</th>
-                        <th>Fecha pedido</th>
+                        <th>Fecha/Hora pedido</th>
                         <th>Monto total</th>
                         <th>Estado de Pedido</th>
                         <th>Acciones</th>
@@ -64,20 +62,26 @@ require_once 'secciones/encabezadotiendacarro.php';
                     </tfoot>
                     <tbody>
                      
-                     <?php 
-require_once "conexionbd.php";
-
-foreach ($connection  ->query("Select a.id, a.fecha, a.total, b.nombreEstado from pedidos a, estadopedido b
-where a.idEstado= b.idEstado
-and a.user_id = '52'
-and a.idEstado = '1'") as $row)
-  { ?> 
+        <?php 
+        require_once "conexionbd.php";
+        $user_id=$_SESSION['Usuario_idPersona'];
+        foreach ($connection  ->query("Select a.id, a.fecha, a.total, b.nombreEstado from pedidos a, estadopedido b
+                    where a.idEstado= b.idEstado
+                        and a.user_id = '$user_id'
+                        and a.idEstado = '1'") as $row)
+                    { 
+        ?> 
 <tr>
   <td><?php echo $row['id']; ?></td>
     <td><?php echo $row['fecha']; ?></td>
-    <td><?php echo $row['total'] ; ?></td>
+    <td><?php echo "$ "; echo $row['total'] ; ?></td>
      <td><?php echo $row['nombreEstado']; ?></td>
-     <th>Acciones</th>
+     <th> <a href="#" class="btn btn-info btn-sm">
+              <i class="fas fa-info-circle"></i>     
+          </a>
+                  <a href="#" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash"></i>
+                  </a></th>
       
  </tr>
 <?php
