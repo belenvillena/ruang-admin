@@ -7,15 +7,13 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
     exit;
 }
 ?>
-
-
-
+<script src="jspdf/dist/jspdf.min.js"></script>
+<script src="js/jspdf.plugin.autotable.min.js"></script>
 <?php include 'config/database.php';
 require_once 'secciones/encabezado.php';
 ?>
 
-<script
-  src="https://code.jquery.com/jquery-3.6.0.js"
+<script  src="https://code.jquery.com/jquery-3.6.0.js"
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
 
@@ -89,24 +87,23 @@ GROUP BY a.id") as $row)
                    <i class="fas fa-check"></i>
                   </a>
                   <button href="#" id="GenerarMysql"  class="btn btn-info btn-sm">
-                    <?php
-include "conexionbd.php";
- $connection = new mysqli($servidor, $nombreusuario, $password, $db);
-$query=$connection->query("select * from detalle_pedido");
-$detalles = array();
-$n=0;
-while($r=$query->fetch_object()){ $detalles[]=$r; $n++;}
-?>
-                    <i class="fas fa-info-circle"></i></button>
+        <?php
+          include "conexionbd.php";            
+            $query=$connection->query("select * from detalle_pedido");
+            $detalles = array();
+            $n=0;
+            while($r=$query->fetch_object()){ $detalles[]=$r; $n++;}
+          ?>
+                  <i class="fas fa-info-circle"></i></button>
                     
-                    <script>
-$("#GenerarMysql").click(function(){
-  var pdf = new jsPDF();
-  pdf.text(20,20,"Mostrando una Tabla con PHP y MySQL");
+<script> $("#GenerarMysql").click(function()
+  {
+    var pdf = new jsPDF();
+    pdf.text(20,20,"Mostrando una Tabla con PHP y MySQL");
 
-  var columns = ["Id", "Id producto", "Id Pedido", "Cantidad"];
-  var data = [
-<?php foreach($clientes as $c):?>
+    var columns = ["Id", "Id producto", "Id Pedido", "Cantidad"];
+    var data = [
+                <?php foreach($detalles as $c):?>
  [<?php echo $n; ?>, "<?php echo $c->id; ?>", "<?php echo $c->idProd; ?>", "<?php echo $c->idPedido; ?>", "<?php echo $c->cantidad; ?>"],
 <?php endforeach; ?>  
   ];
