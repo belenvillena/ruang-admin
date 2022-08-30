@@ -6,3 +6,7 @@
             $db = "transprodriguez";
         
           $connection = new mysqli($servidor, $nombreusuario, $password, $db);
+
+          ?>
+
+   
