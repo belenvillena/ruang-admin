@@ -175,7 +175,7 @@ GROUP BY a.id") as $row)
 <script>
 $("#GenerarMysql").click(function(){
   var pdf = new jsPDF();
-  pdf.text(20,20,"Mostrando una Tabla con PHP y MySQL");
+  pdf.text(20,20,"Pedidos generados pendientes de Confirmación de Stock");
 
   var columns = ["id", "idProd", "idPedido", "cantidad"];
   var data = [
@@ -188,7 +188,7 @@ $("#GenerarMysql").click(function(){
     { margin:{ top: 25  }}
   );
 
-  pdf.save('MiTabla.pdf');
+  pdf.save('PedidosGenerados.pdf');
 
 });
 </script>
