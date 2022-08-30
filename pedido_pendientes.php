@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -7,26 +8,38 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
     exit;
 }
 ?>
-<script src="jspdf/dist/jspdf.min.js"></script>
-<script src="js/jspdf.plugin.autotable.min.js"></script>
-<?php include 'config/database.php';
-require_once 'secciones/encabezado.php';
+<?php
+include "conexion1.php";
+$db =  connect();
+$query=$db->query("select * from detalle_pedido");
+$detalles = array();
+$n=0;
+while($r=$query->fetch_object()){ $detalles[]=$r; $n++;}
+
 ?>
 
-<script  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+<script src="jspdf/dist/jspdf.min.js"></script>
+<script src="js\dist\jspdf.plugin.autotable.min.js"></script>
+<meta charset="utf-8">
+
+<?php 
+require_once 'secciones/encabezado.php';
+?>
+ 
+
 
 
         <!-- Topbar -->
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Pedidos generados pendientes de confirmación</h1>
+            <h1 class="h3 mb-0 text-gray-800">Pedidos generados pendientes de confirmación</h1> 
+            
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Inicio</a></li>
               <li class="breadcrumb-item">Ordenes</li>
               <li class="breadcrumb-item active" aria-current="page">Pedidos Generados</li>
+               
             </ol>
           </div>
 
@@ -67,7 +80,7 @@ require_once 'secciones/encabezado.php';
                     <tbody>
                      
                      <?php 
-require_once "conexionbd.php";
+  require_once "conexionbd.php";
 
 foreach ($connection  ->query("SELECT a.id, b.puestoMercado, a.fecha, a.total, SUM( z.cantidad ) AS cant, c.nombreEstado
 FROM pedidos a, persona b, estadopedido c, detalle_pedido z
@@ -83,43 +96,17 @@ GROUP BY a.id") as $row)
     <td>$ <?php echo $row['total'] ; ?></td>
     <td ><?php echo $row['cant'] ; ?></td>
      <td><span class="badge badge-danger"><?php echo $row['nombreEstado']; ?></td>
-     <td><a href="#" class="btn btn-success btn-sm">
+     <td><button href="#" class="btn btn-success btn-sm">
                    <i class="fas fa-check"></i>
-                  </a>
-                  <button href="#" id="GenerarMysql"  class="btn btn-info btn-sm">
-        <?php
-          include "conexionbd.php";            
-            $query=$connection->query("select * from detalle_pedido");
-            $detalles = array();
-            $n=0;
-            while($r=$query->fetch_object()){ $detalles[]=$r; $n++;}
-          ?>
-                  <i class="fas fa-info-circle"></i></button>
-                    
-<script> $("#GenerarMysql").click(function()
-  {
-    var pdf = new jsPDF();
-    pdf.text(20,20,"Mostrando una Tabla con PHP y MySQL");
+                  </button>
+                  <button id="GenerarMysql" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i>
+</button>                   
 
-    var columns = ["Id", "Id producto", "Id Pedido", "Cantidad"];
-    var data = [
-                <?php foreach($detalles as $c):?>
- [<?php echo $n; ?>, "<?php echo $c->id; ?>", "<?php echo $c->idProd; ?>", "<?php echo $c->idPedido; ?>", "<?php echo $c->cantidad; ?>"],
-<?php endforeach; ?>  
-  ];
-
-  pdf.autoTable(columns,data,
-    { margin:{ top: 25  }}
-  );
-
-  pdf.save('MiTabla.pdf');
-
-});
-</script>
-                  </a>
-                   <a href="#" class="btn btn-danger btn-sm">
+                  
+                   <button href="#" class="btn btn-danger btn-sm">
                     <i class="fas fa-trash"></i>
-                  </a> </td>
+                  </button> 
+</td>
    
       
  </tr>
@@ -157,7 +144,9 @@ GROUP BY a.id") as $row)
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  
+ 
+  
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -182,6 +171,28 @@ GROUP BY a.id") as $row)
 
     
   </script>
+
+<script>
+$("#GenerarMysql").click(function(){
+  var pdf = new jsPDF();
+  pdf.text(20,20,"Mostrando una Tabla con PHP y MySQL");
+
+  var columns = ["id", "idProd", "idPedido", "cantidad"];
+  var data = [
+    <?php foreach($detalles as $c):?>
+ [ "<?php echo $c->id; ?>", "<?php echo $c->idProd; ?>", "<?php echo $c->idPedido; ?>", "<?php echo $c->cantidad; ?>"],
+<?php endforeach; ?>
+  ];
+
+  pdf.autoTable(columns,data,
+    { margin:{ top: 25  }}
+  );
+
+  pdf.save('MiTabla.pdf');
+
+});
+</script>
+
 
 </body>
 
