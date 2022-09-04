@@ -8,15 +8,7 @@ if (empty($_SESSION['Usuario_Nombre']) ) {
     exit;
 }
 ?>
-<?php
-include "conexion1.php";
-$db =  connect();
-$query=$db->query("select * from detalle_pedido");
-$detalles = array();
-$n=0;
-while($r=$query->fetch_object()){ $detalles[]=$r; $n++;}
 
-?>
 
 <script src="jspdf/dist/jspdf.min.js"></script>
 <script src="js\dist\jspdf.plugin.autotable.min.js"></script>
@@ -99,6 +91,8 @@ GROUP BY a.id") as $row)
      <td><button href="#" class="btn btn-success btn-sm">
                    <i class="fas fa-check"></i>
                   </button>
+                  
+                 
                   <button id="GenerarMysql" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i>
 </button>                   
 
@@ -112,6 +106,21 @@ GROUP BY a.id") as $row)
  </tr>
 <?php
   }
+?>
+ <?php
+ require_once "conexion1.php";
+$db =  connect();
+$query=$db->query("SELECT a.id, b.apellidoPersona, b.puestoMercado, c.idProd, e.descripcionProd, e.precioProd,
+                     c.cantidad, (c.cantidad * e.precioProd) AS precioTotal
+                  FROM pedidos a, persona b, detalle_pedido c, producto e
+                  WHERE a.user_id = b.idPersona
+                  AND a.id = c.idPedido
+                  AND c.idProd = e.idProducto
+                  AND a.id = $row[id]");
+$detalles = array();
+$n=0;
+while($r=$query->fetch_object()){ $detalles[]=$r; $n++;}
+
 ?>
                       
                       
@@ -177,10 +186,12 @@ $("#GenerarMysql").click(function(){
   var pdf = new jsPDF();
   pdf.text(20,20,"Pedidos generados pendientes de Confirmación de Stock");
 
-  var columns = ["id", "idProd", "idPedido", "cantidad"];
+  var columns = ["Pedido", "Apellido", "Puesto", "Codigo", "Nombre Producto",
+                  "Precio unitario", "Cantidad", "Total item"];
   var data = [
     <?php foreach($detalles as $c):?>
- [ "<?php echo $c->id; ?>", "<?php echo $c->idProd; ?>", "<?php echo $c->idPedido; ?>", "<?php echo $c->cantidad; ?>"],
+ [ "<?php echo $c->id; ?>", "<?php echo $c->apellidoPersona; ?>", "<?php echo $c->puestoMercado; ?>"
+ , "<?php echo $c->idProd; ?>", "<?php echo $c->descripcionProd; ?>", "<?php echo $c->precioProd; ?>", "<?php echo $c->cantidad; ?>", "<?php echo $c->precioTotal; ?>"],
 <?php endforeach; ?>
   ];
 
