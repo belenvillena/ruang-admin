@@ -44,7 +44,8 @@ require_once 'secciones/encabezado.php';
                  
                 </div>
                 <div class="table-responsive p-3">
-                  <table class="table align-items-center table-flush" id="dataTable">
+                  <form method="POST" action="confirmarpedidoadm.php">
+                  <table class="table align-items-center table-flush" id="dataTable" >
                     <thead class="thead-light" >
                       <tr>
                         <th>N° pedido</th>
@@ -72,6 +73,12 @@ require_once 'secciones/encabezado.php';
                     <tbody>
                      
                      <?php 
+
+
+ 
+  
+
+
   require_once "conexionbd.php";
 
 foreach ($connection  ->query("SELECT a.id, b.puestoMercado, a.fecha, a.total, SUM( z.cantidad ) AS cant, c.nombreEstado
@@ -80,52 +87,52 @@ WHERE a.idEstado = c.idEstado
 AND z.idPedido = a.id
 AND a.user_id = b.idPersona
 GROUP BY a.id") as $row)
-  { ?> 
+
+
+  { 
+    
+   ?> 
 <tr>
-  <td><?php echo $row['id']; ?></td>
+  <td onclick="muestra(this)"><?php echo $row['id'];   ?></td>
   <td><?php echo $row['puestoMercado']; ?></td>
     <td><?php echo $row['fecha']; ?></td>
     <td>$ <?php echo $row['total'] ; ?></td>
     <td ><?php echo $row['cant'] ; ?></td>
      <td><span class="badge badge-danger"><?php echo $row['nombreEstado']; ?></td>
-     <td><button href="#" class="btn btn-success btn-sm">
-                   <i class="fas fa-check"></i>
-                  </button>
-                  
-                 
-                  <button id="GenerarMysql" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i>
-</button>                   
+     <td>         <button name="confirmarpedido" formaction="confirmarpedidoadm.php" onclick="confirmarpedidoadm.php" class="btn btn-success btn-sm"><i class="fas fa-check"></i></button>  
 
-                  
-                   <button href="#" class="btn btn-danger btn-sm">
-                    <i class="fas fa-trash"></i>
-                  </button> 
-</td>
+     <?php     include "conexionbd.php";
+
+$query= $connection  ->query("SELECT a.id, b.apellidoPersona, b.puestoMercado, c.idProd, e.descripcionProd, e.precioProd,
+            c.cantidad, (c.cantidad * e.precioProd) AS precioTotal
+         FROM pedidos a, persona b, detalle_pedido c, producto e
+         WHERE a.user_id = b.idPersona
+         AND a.id = c.idPedido
+         AND c.idProd = e.idProducto
+         and a.id= '$row[id]'
+          ");
+$detalles = array();
+$n=0;
+while($r=$query->fetch_object())
+{ $detalles[]=$r; $n++;
+  } 
+
+?> 
+
+                  <button id="GenerarMysql" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></button>                     
+                  <button href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> </button> 
+    </td>
    
       
  </tr>
 <?php
   }
-?>
- <?php
- require_once "conexion1.php";
-$db =  connect();
-$query=$db->query("SELECT a.id, b.apellidoPersona, b.puestoMercado, c.idProd, e.descripcionProd, e.precioProd,
-                     c.cantidad, (c.cantidad * e.precioProd) AS precioTotal
-                  FROM pedidos a, persona b, detalle_pedido c, producto e
-                  WHERE a.user_id = b.idPersona
-                  AND a.id = c.idPedido
-                  AND c.idProd = e.idProducto
-                  AND a.id = $row[id]");
-$detalles = array();
-$n=0;
-while($r=$query->fetch_object()){ $detalles[]=$r; $n++;}
+ ?> 
 
-?>
-                      
-                      
+         
                     </tbody>
                   </table>
+                  </form>
                 </div>
               </div>
             </div>
@@ -202,6 +209,19 @@ $("#GenerarMysql").click(function(){
   pdf.save('PedidosGenerados.pdf');
 
 });
+</script>
+
+<script type="text/javascript">
+function ver_id() {
+    if (!document.getElementsByTagName || !document.createTextNode) return;
+    var rows = document.getElementById('dataTable').getElementsByTagName('tr');
+    for (i = 0; i < rows.length; i++) {
+        rows[i].onclick = function() {
+		var result = this.getElementsByTagName('td')[0].innerHTML;
+            alert(result);
+        }
+    }
+}
 </script>
 
 
